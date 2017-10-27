@@ -10,29 +10,33 @@
         {
             "environment": [],
             "name": "simple-app",
-            "image": "amazon/amazon-ecs-sample",
+            "image": "jasonrivers/nagios",
             "cpu": 10,
-            "memory": 500,
+            "memory": 3,
             "portMappings": [
                 {
                     "containerPort": 80,
                     "hostPort": 80
                 }
             ],
-            "mountPoints": [
+            /*"mountPoints": [
                 {
                     "sourceVolume": "my-vol",
                     "containerPath": "/var/www/my-vol"
                 }
-            ],
+            ],*/
             "entryPoint": [
-                "/usr/sbin/apache2",
+                --name nagios4  \
+    -v /path-to-nagios/etc/:/opt/nagios/etc/ \
+    -v /path-to-nagios/var:/opt/nagios/var/ \
+    -v /path-to-custom-plugins:/opt/Custom-Nagios-Plugins
+                /*"/usr/sbin/apache2",
                 "-D",
-                "FOREGROUND"
+                "FOREGROUND"*/
             ],
             "essential": true
         },
-        {
+        /*{
             "name": "busybox",
             "image": "busybox",
             "cpu": 10,
@@ -49,7 +53,7 @@
             "command": [
                 "/bin/sh -c \"while true; do /bin/date > /var/www/my-vol/date; sleep 1; done\""
             ],
-            "essential": false
+            "essential": false*/
         }
     ]
 }
